@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Configurator</title>
+	<title>ConfigLoaderOptions | Configurator</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">Configurator</a>
+					<a href="../index.html" class="title">Configurator</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -51,73 +51,133 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="globals.html">Globals</a>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="configloaderoptions.html">ConfigLoaderOptions</a>
 				</li>
 			</ul>
-			<h1> Configurator</h1>
+			<h1>Interface ConfigLoaderOptions</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<div align="center">
-					<h1 id="wrench-configuru">:wrench: Configuru</h1>
-					<p><a href="https://travis-ci.com/AckeeCZ/configuru"><img src="https://img.shields.io/travis/com/AckeeCZ/configuru/master.svg?style=flat-square" alt="Build Status"></a>
-						<a href="https://codeclimate.com/github/AckeeCZ/configuru"><img src="https://img.shields.io/codeclimate/coverage/AckeeCZ/configuru.svg?style=flat-square" alt="Coverage"></a>
-						<a href="https://codeclimate.com/github/AckeeCZ/configuru"><img src="https://img.shields.io/codeclimate/maintainability/AckeeCZ/configuru.svg?style=flat-square" alt="Maintainability"></a>
-						<a href="https://snyk.io/test/github/AckeeCZ/configuru?targetFile=package.json"><img src="https://img.shields.io/snyk/vulnerabilities/github/AckeeCZ/configuru.svg?style=flat-square" alt="Vulnerabilities"></a>
-						<a href="https://david-dm.org/AckeeCZ/configuru"><img src="https://img.shields.io/david/AckeeCZ/configuru.svg?style=flat-square" alt="Dependency Status"></a>
-					<a href="https://david-dm.org/AckeeCZ/configuru?type=dev"><img src="https://img.shields.io/david/dev/AckeeCZ/configuru.svg?style=flat-square" alt="Dev Dependency Status"></a></p>
-					<p>Manage the configuration of your Nodejs application with multiple environments and custom preferences, utilizing Configuru in CI and development as well!</p>
-				</div>
-				<h2 id="license">License</h2>
-				<p>This project is licensed under <a href="./LICENSE">MIT</a>.</p>
-			</div>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">ConfigLoaderOptions</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="configloaderoptions.html#defaultconfigpath" class="tsd-kind-icon">default<wbr>Config<wbr>Path</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="configloaderoptions.html#envmode" class="tsd-kind-icon">env<wbr>Mode</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="configloaderoptions.html#userconfigpath" class="tsd-kind-icon">user<wbr>Config<wbr>Path</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="defaultconfigpath" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> default<wbr>Config<wbr>Path</h3>
+					<div class="tsd-signature tsd-kind-icon">default<wbr>Config<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/3ab3b8f/src/lib/loader.ts#L5">loader.ts:5</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="envmode" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> env<wbr>Mode</h3>
+					<div class="tsd-signature tsd-kind-icon">env<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"default"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"merged"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"none"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/3ab3b8f/src/lib/loader.ts#L7">loader.ts:7</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="userconfigpath" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> user<wbr>Config<wbr>Path</h3>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Config<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/3ab3b8f/src/lib/loader.ts#L6">loader.ts:6</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/configloaderoptions.html" class="tsd-kind-icon">Config<wbr>Loader<wbr>Options</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
+						<a href="configloaderoptions.html" class="tsd-kind-icon">Config<wbr>Loader<wbr>Options</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="configloaderoptions.html#defaultconfigpath" class="tsd-kind-icon">default<wbr>Config<wbr>Path</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="configloaderoptions.html#envmode" class="tsd-kind-icon">env<wbr>Mode</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="configloaderoptions.html#userconfigpath" class="tsd-kind-icon">user<wbr>Config<wbr>Path</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#configloader" class="tsd-kind-icon">Config<wbr>Loader</a>
+						<a href="../globals.html#configloader" class="tsd-kind-icon">Config<wbr>Loader</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="globals.html#keys" class="tsd-kind-icon">keys</a>
+						<a href="../globals.html#keys" class="tsd-kind-icon">keys</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#anonymize" class="tsd-kind-icon">anonymize</a>
+						<a href="../globals.html#anonymize" class="tsd-kind-icon">anonymize</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#createatomloaderfactory" class="tsd-kind-icon">create<wbr>Atom<wbr>Loader<wbr>Factory</a>
+						<a href="../globals.html#createatomloaderfactory" class="tsd-kind-icon">create<wbr>Atom<wbr>Loader<wbr>Factory</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#createconfigstorage" class="tsd-kind-icon">create<wbr>Config<wbr>Storage</a>
+						<a href="../globals.html#createconfigstorage" class="tsd-kind-icon">create<wbr>Config<wbr>Storage</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#createloaders" class="tsd-kind-icon">create<wbr>Loaders</a>
+						<a href="../globals.html#createloaders" class="tsd-kind-icon">create<wbr>Loaders</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#frompairs" class="tsd-kind-icon">from<wbr>Pairs</a>
+						<a href="../globals.html#frompairs" class="tsd-kind-icon">from<wbr>Pairs</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#identity" class="tsd-kind-icon">identity</a>
+						<a href="../globals.html#identity" class="tsd-kind-icon">identity</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#parsebool" class="tsd-kind-icon">parse<wbr>Bool</a>
+						<a href="../globals.html#parsebool" class="tsd-kind-icon">parse<wbr>Bool</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#defaultopts" class="tsd-kind-icon">default<wbr>Opts</a>
+						<a href="../globals.html#defaultopts" class="tsd-kind-icon">default<wbr>Opts</a>
 					</li>
 				</ul>
 			</nav>
@@ -188,7 +248,7 @@
 	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
