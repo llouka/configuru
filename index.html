@@ -74,7 +74,9 @@
 					<a href="https://david-dm.org/AckeeCZ/configuru?type=dev"><img src="https://img.shields.io/david/dev/AckeeCZ/configuru.svg?style=flat-square" alt="Dev Dependency Status"></a></p>
 					<p>Manage the configuration of your Nodejs application with multiple environments and custom preferences, utilizing Configuru in CI and development as well!</p>
 				</div>
-				<h2 id="features">Features</h2>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
+				</a>
 				<p>Configuru is a library for configuration management. Merge default project configuration with your user config, you can link yo your project. Atop of that, override your configuration with system environment variables.</p>
 				<ul>
 					<li>:relieved: Tailored for multi-developer comfort</li>
@@ -83,15 +85,23 @@
 					<li>:muscle: Designed for multi-environment apps</li>
 					<li>:see_no_evil: Anonymized configuration for logger</li>
 				</ul>
-				<h2 id="getting-started">Getting started</h2>
-				<h3 id="install">Install</h3>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting started</h2>
+				</a>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h3>Install</h3>
+				</a>
 				<pre><code class="language-bash">npm install configuru</code></pre>
-				<h3 id="setup">Setup</h3>
+				<a href="#setup" id="setup" style="color: inherit; text-decoration: none;">
+					<h3>Setup</h3>
+				</a>
 				<ol>
 					<li>Create <code>.env.json</code> in root of your project, add defaults and placeholders</li>
 					<li><em>(optional)</em> Create custom (e.g. <code>~/.env/my-project.json</code>) and save the path in your <code>CFG_JSON_PATH</code>. Use it to override your defaults</li>
 				</ol>
-				<h3 id="use">Use</h3>
+				<a href="#use" id="use" style="color: inherit; text-decoration: none;">
+					<h3>Use</h3>
+				</a>
 				<p><code>config.ts</code></p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader, values } <span class="hljs-keyword">from</span> <span class="hljs-string">'configuru'</span>;
 
@@ -110,12 +120,18 @@
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> config <span class="hljs-keyword">from</span> <span class="hljs-string">'./config'</span>; <span class="hljs-comment">// e.g. { server: { port: 3000 } }</span>
 
 <span class="hljs-built_in">console</span>.log(config.server.port); <span class="hljs-comment">// 3000</span></code></pre>
-				<h2 id="config-storage-precedence">Config storage precedence</h2>
+				<a href="#config-storage-precedence" id="config-storage-precedence" style="color: inherit; text-decoration: none;">
+					<h2>Config storage precedence</h2>
+				</a>
 				<p>Configuration is merged from three sources with override priorities as described in the following diagram.</p>
 				<p><img src="https://www.plantuml.com/plantuml/svg/0/VP4zJyD038Rt-nLM9XWITiHGAGnyI7HWOZpkdFPeOXy-En8IFvvBcw7jmFhQVfvNygQe5xLfTEMGA7ln4qnC7FR24uAAeND36X6QY8EtKI4m3MdNW2yGrv4LbFFSNF0I8Gi7BAL3cfSqEqUi299sUmKUwldZohofDJI5MtXvtxwjfCwz8cP8j72-C2Wiij8vf0WBw1fdhhUYFC6npXrKRHAc2KalkJsJ-aG52WP1BS1IWTIUIbHZDlt7azq7crpWPo_9VnxRFNcAFp1KvBUbS02UKIH5N2JzyparmiDlsuBTGmEmNTTAu-oKv-jyKq_hf_u0" alt="x" title="x"></p>
 				<p>:warning: All storage sources are regarded as flat structures. Nested objects are not merged.</p>
-				<h2 id="advanced-usage">Advanced usage</h2>
-				<h3 id="hidden-variables-secrets-and-logging">Hidden variables, secrets and logging</h3>
+				<a href="#advanced-usage" id="advanced-usage" style="color: inherit; text-decoration: none;">
+					<h2>Advanced usage</h2>
+				</a>
+				<a href="#hidden-variables-secrets-and-logging" id="hidden-variables-secrets-and-logging" style="color: inherit; text-decoration: none;">
+					<h3>Hidden variables, secrets and logging</h3>
+				</a>
 				<p><code>config.ts</code></p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader, values, safeValues } <span class="hljs-keyword">from</span> <span class="hljs-string">'configuru'</span>;
 <span class="hljs-keyword">const</span> loader = createLoader();
@@ -136,7 +152,9 @@ config.apiKey; <span class="hljs-comment">// szvor4VYgS79z3QSBtmN0dJeyXbg1Xip</s
 
 <span class="hljs-comment">// don't use, is truncated (or hidden for shorter vars) but okay-ish to log</span>
 safeConfig.apiKey; <span class="hljs-comment">// szvor***g1Xip</span></code></pre>
-				<h3 id="options">Options</h3>
+				<a href="#options" id="options" style="color: inherit; text-decoration: none;">
+					<h3>Options</h3>
+				</a>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader } <span class="hljs-keyword">from</span> <span class="hljs-string">'configuru'</span>;
 <span class="hljs-keyword">const</span> loader = createLoader({
     defaultConfigPath: <span class="hljs-string">'default-config.json'</span>; <span class="hljs-comment">// defaults to ".env.json"</span>
@@ -154,7 +172,9 @@ safeConfig.apiKey; <span class="hljs-comment">// szvor***g1Xip</span></code></pr
 						</ol>
 					</li>
 				</ol>
-				<h3 id="mismatch-types">Mismatch types</h3>
+				<a href="#mismatch-types" id="mismatch-types" style="color: inherit; text-decoration: none;">
+					<h3>Mismatch types</h3>
+				</a>
 				<p>Configuru is type safe, but you can run into problems, having an enum value parsed as a string.
 				Since there is no enum loader, thus no validation, the value can be anything.</p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> loader = createLoader();
@@ -183,7 +203,9 @@ createLogger(config1); <span class="hljs-comment">// error: string not assignabl
 }); <span class="hljs-comment">// type -&gt; { defaultLevel: Level }</span>
 
 createLogger(config2); <span class="hljs-comment">// OK</span></code></pre>
-				<h3 id="custom-loaders">Custom loaders</h3>
+				<a href="#custom-loaders" id="custom-loaders" style="color: inherit; text-decoration: none;">
+					<h3>Custom loaders</h3>
+				</a>
 				<p>Default loaders not enough? You can use custom loaders to create any transformation you want and types will be inferred from the return type of you function.</p>
 				<pre><code class="language-typescript"><span class="hljs-comment">// 'PHOTO-2019-04-01' =&gt; { type: 'PHOTO', date: Date }</span>
 <span class="hljs-keyword">const</span> stampLoader = loader.custom(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> {
@@ -194,13 +216,17 @@ createLogger(config2); <span class="hljs-comment">// OK</span></code></pre>
 <span class="hljs-keyword">const</span> config = values({
     stamp: stampLoader(<span class="hljs-string">'LOGGER_DEFAULT_LEVEL'</span>),
 }); <span class="hljs-comment">// type -&gt; { stamp: { type: any, date: Date } };</span></code></pre>
-				<h2 id="best-practices">Best practices</h2>
+				<a href="#best-practices" id="best-practices" style="color: inherit; text-decoration: none;">
+					<h2>Best practices</h2>
+				</a>
 				<ul>
 					<li>Always use flat structure in JSON files (create logical hierarchy in your app when building config with loader)</li>
 					<li>For config keys, use <code>CAPITALIZED_WITH_UNDERSCORES</code> case, as is conventional for env variables</li>
 					<li>Keep all variables used by loader in you default config, keep it version in the project. Store default values or placeholders. It will be a perfect starting point for custom configs.</li>
 				</ul>
-				<h2 id="see-also">See also</h2>
+				<a href="#see-also" id="see-also" style="color: inherit; text-decoration: none;">
+					<h2>See also</h2>
+				</a>
 				<ul>
 					<li><a href="https://www.npmjs.com/package/config"><code>config</code></a> - Simple JSON config loader using NODE_ENV</li>
 					<li><a href="https://www.npmjs.com/package/dotenv"><code>dotenv</code></a> - Load your configuration file to process.ENV</li>
@@ -208,7 +234,9 @@ createLogger(config2); <span class="hljs-comment">// OK</span></code></pre>
 					<li><a href="https://www.npmjs.com/package/configstore"><code>configstore</code></a> - KV storage for configuration</li>
 					<li><a href="https://www.npmjs.com/package/figgy-pudding"><code>figgy-pudding</code></a> - Config object builder / storage</li>
 				</ul>
-				<h2 id="license">License</h2>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
 				<p>This project is licensed under <a href="./LICENSE">MIT</a>.</p>
 			</div>
 		</div>
