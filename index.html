@@ -97,8 +97,15 @@
 					<h3>Setup</h3>
 				</a>
 				<ol>
-					<li>Create <code>.env.json</code> in root of your project, add defaults and placeholders</li>
-					<li><em>(optional)</em> Create custom (e.g. <code>~/.env/my-project.json</code>) and save the path in your <code>CFG_JSON_PATH</code>. Use it to override your defaults</li>
+					<li>Create <code>.env.jsonc</code> in root of your project, add defaults or placeholders. It can look like this:<pre><code class="language-jsonc">{
+ // HTTP server
+ &quot;SERVER_PORT&quot;: 3000, // port the server will be listening on
+}</code></pre>
+					</li>
+					<li><em>(optional)</em> Create custom (e.g. <code>~/.env/my-project.jsonc</code>) and save the path in your <code>CFG_JSON_PATH</code>. Use it to override your defaults<pre><code class="language-json">{
+ <span class="hljs-attr">"SERVER_PORT"</span>: <span class="hljs-number">3001</span>,
+}</code></pre>
+					🦉 If you want to, you can omit the <code>SERVER_PORT</code> in your configuration (to leave the single value to default <code>3000</code>), or not set your custom configuration at all.</li>
 				</ol>
 				<a href="#use" id="use" style="color: inherit; text-decoration: none;">
 					<h3>Use</h3>
@@ -130,6 +137,16 @@
 				<a href="#advanced-usage" id="advanced-usage" style="color: inherit; text-decoration: none;">
 					<h2>Advanced usage</h2>
 				</a>
+				<a href="#constant-parameters" id="constant-parameters" style="color: inherit; text-decoration: none;">
+					<h3>Constant parameters</h3>
+				</a>
+				<p>Sometimes it makes sense to have a static parameter in configuration. For example, when connecting to third party service, you want to have api key configurable per environment, but connection options not. You can insert in your configuration schema constant values of any type without loader and use Configuru for application parameters as well.</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> configSchema = {
+    configurable: loader.string(<span class="hljs-string">'KEY'</span>),
+    <span class="hljs-keyword">static</span>: <span class="hljs-string">'foo'</span>,
+};
+<span class="hljs-comment">// { configurable: &lt;loaded value&gt;, static: 'foo' }</span>
+<span class="hljs-keyword">const</span> { configurable, <span class="hljs-keyword">static</span> } = values(configSchema);</code></pre>
 				<a href="#hidden-variables-secrets-and-logging" id="hidden-variables-secrets-and-logging" style="color: inherit; text-decoration: none;">
 					<h3>Hidden variables, secrets and logging</h3>
 				</a>
@@ -158,7 +175,7 @@ safeConfig.apiKey; <span class="hljs-comment">// szvor***g1Xip</span></code></pr
 				</a>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader } <span class="hljs-keyword">from</span> <span class="hljs-string">'configuru'</span>;
 <span class="hljs-keyword">const</span> loader = createLoader({
-    defaultConfigPath: <span class="hljs-string">'default-config.json'</span>; <span class="hljs-comment">// defaults to ".env.json"</span>
+    defaultConfigPath: <span class="hljs-string">'default-config'</span>; <span class="hljs-comment">// defaults to ".env"</span>
     userConfigPath: process.env.USER_CONFIG; <span class="hljs-comment">// defaults to process.env.CFG_JSON_PATH</span>
     envMode?: <span class="hljs-string">'all'</span>; <span class="hljs-comment">// defaults to "default"</span>
 });</code></pre>
@@ -173,6 +190,7 @@ safeConfig.apiKey; <span class="hljs-comment">// szvor***g1Xip</span></code></pr
 						</ol>
 					</li>
 				</ol>
+				<p>🦉 When configuring configuru, you can always use paths with or without extension, it will try to find any of the supported formats via replacing/adding valid extensions.</p>
 				<a href="#mismatch-types" id="mismatch-types" style="color: inherit; text-decoration: none;">
 					<h3>Mismatch types</h3>
 				</a>
@@ -215,16 +233,48 @@ createLogger(config2); <span class="hljs-comment">// OK</span></code></pre>
 })
 
 <span class="hljs-keyword">const</span> config = values({
-    stamp: stampLoader(<span class="hljs-string">'LOGGER_DEFAULT_LEVEL'</span>),
+    stamp: stampLoader(<span class="hljs-string">'STAMP'</span>),
 }); <span class="hljs-comment">// type -&gt; { stamp: { type: any, date: Date } };</span></code></pre>
 				<a href="#best-practices" id="best-practices" style="color: inherit; text-decoration: none;">
 					<h2>Best practices</h2>
 				</a>
 				<ul>
-					<li>Always use flat structure in JSON files (create logical hierarchy in your app when building config with loader)</li>
-					<li>For config keys, use <code>CAPITALIZED_WITH_UNDERSCORES</code> case, as is conventional for env variables</li>
-					<li>Keep all variables used by loader in you default config, keep it version in the project. Store default values or placeholders. It will be a perfect starting point for custom configs.</li>
+					<li>Always <strong>use flat structure</strong> in JSON files (create logical hierarchy in your app when building config with loader)</li>
+					<li>For config keys, <strong>use <code>CAPITALIZED_WITH_UNDERSCORES</code> case</strong>, as is conventional for env variables</li>
+					<li><strong>Keep all variables used by loader in you default config</strong>, add to VCS. Store default values or placeholders. It will be a perfect starting point for custom configs.</li>
+					<li>Keep your configuration interface <strong>minimal</strong>. If you don&#39;t need to configure parameter for different environments, use constant parameter without loader.</li>
+					<li>Even though you can use plain <code>JSON</code> for config values, <strong>prefer <code>JSONc</code></strong> and add comments to your variables.</li>
+					<li><strong>Keep your <code>.env.jsonc</code> well structured and well documented</strong>. Setting up the configuration should not require thorough prior knowledge of the implementation.</li>
 				</ul>
+				<a href="#when-to-use-placeholder-when-default-value" id="when-to-use-placeholder-when-default-value" style="color: inherit; text-decoration: none;">
+					<h3>When to use placeholder, when default value?</h3>
+				</a>
+				<p><img src="http://www.plantuml.com/plantuml/svg/POwnJWCn38RtF8KbbkihqA5bP623xHRVdNCnEFOfSO2-FQ65WbGFaNxz__Sfn-fOl6K9zOrrmu8PigdDgLWcyDBeNxDGn2R-J9_-8Bng9dMO-qCbd4KXS8HXr2TyjS9-0elGAfKAipLPHkq1FjYJjGucr9LrFOow0q-aC9oexWBq-zOyLc3le4PUI9rH3ZSxaYuSr7hwkRjfckvVAlr-5jvH6kslVNNRBgWk7CEVu9B3bTy4Pqgs29LzE5FXs3SjonS0" alt=""></p>
+				<p>Examples:</p>
+				<ul>
+					<li>Setting default of <code>SQL_PORT</code> to <code>5432</code> is a good idea if you are using PostgreSQL. Similarly for MySQL, a reasonable default value would be <code>3306</code></li>
+					<li>Default <code>3000</code> for your HTTP server might be reasonable, if it is a convention of your developer team and/or its is wired e.g. in your Dockerfile anyway. Developers can still change it collides with any local running processes.</li>
+					<li>Using credentials to your testing infrastructure as a default is wrong, even though it would make setup for developers easier in some scenarios. It would be confidential info in your repo history.</li>
+				</ul>
+				<a href="#recommended-structure-for-envjsonc" id="recommended-structure-for-envjsonc" style="color: inherit; text-decoration: none;">
+					<h3>Recommended structure for <code>.env.jsonc</code></h3>
+				</a>
+				<pre><code class="language-jsonc">{
+    // Server
+    &quot;SERVER_PORT&quot;: 3000,
+
+    // Development
+    &quot;LOGGER_PRETTY&quot;: false, // colorful formatted logs
+    &quot;DEV_ERRORS&quot;: false, // if true, return error details, including stack trace (affects only response, full details are always logged)
+
+    // Logging
+    &quot;LOGGER_DEFAULT_LEVEL&quot;: &quot;debug&quot;, // silent, fatal, error, warn, info, debug, trace
+}</code></pre>
+				<ol>
+					<li>If you find your configuration file harder to navigate through, use sections seperated by a newline with a comment</li>
+					<li>If name is not self-explanatory, use brief comment to explain how is the value interpreted</li>
+					<li>Do not include tautological comments (<code>&quot;SERVER_PORT&quot;: 3000, // server port</code>)</li>
+				</ol>
 				<a href="#see-also" id="see-also" style="color: inherit; text-decoration: none;">
 					<h2>See also</h2>
 				</a>
@@ -307,6 +357,9 @@ createLogger(config2); <span class="hljs-comment">// OK</span></code></pre>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#parsebool" class="tsd-kind-icon">parse<wbr>Bool</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+						<a href="globals.html#uniq" class="tsd-kind-icon">uniq</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#jsonc" class="tsd-kind-icon">JSONC</a>
