@@ -120,10 +120,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
 					<a name="anonymousvalues" class="tsd-anchor"></a>
 					<h3>Anonymous<wbr>Values</h3>
-					<div class="tsd-signature tsd-kind-icon">Anonymous<wbr>Values&lt;C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">C extends object ? object : C</span></div>
+					<div class="tsd-signature tsd-kind-icon">Anonymous<wbr>Values&lt;C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">C extends Function ? C : C extends object ? object : C</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/polishers.ts#L10">polishers.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/polishers.ts#L12">polishers.ts:12</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -139,7 +139,7 @@
 					<div class="tsd-signature tsd-kind-icon">Loaded<wbr>ToValue&lt;X&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">X extends LoadedValue&lt;any, any&gt; ? X[&quot;value&quot;] : X</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/polishers.ts#L4">polishers.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/polishers.ts#L4">polishers.ts:4</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -152,10 +152,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
 					<a name="values" class="tsd-anchor"></a>
 					<h3>Values</h3>
-					<div class="tsd-signature tsd-kind-icon">Values&lt;C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">C extends object ? object : C</span></div>
+					<div class="tsd-signature tsd-kind-icon">Values&lt;C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">C extends Function ? C : C extends object ? object : C</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/polishers.ts#L6">polishers.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/polishers.ts#L6">polishers.ts:6</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -174,7 +174,7 @@
 					<div class="tsd-signature tsd-kind-icon">keys<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">keys</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/storage.ts#L8">storage.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/storage.ts#L8">storage.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -184,7 +184,7 @@
 					<div class="tsd-signature tsd-kind-icon">safe<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;mapConfig(x &#x3D;&gt; (x.hidden ? anonymize(x.rawValue) : x.value)) as &lt;T extends Record&lt;any, any&gt;&gt;(config: T) &#x3D;&gt; AnonymousValues&lt;T&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/polishers.ts#L33">polishers.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/polishers.ts#L37">polishers.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -221,7 +221,7 @@
 					<div class="tsd-signature tsd-kind-icon">values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;mapConfig(x &#x3D;&gt; x.value) as &lt;T extends Record&lt;any, any&gt;&gt;(config: T) &#x3D;&gt; Values&lt;T&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/polishers.ts#L32">polishers.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/polishers.ts#L36">polishers.ts:36</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -265,7 +265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/helpers.ts#L3">helpers.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/helpers.ts#L3">helpers.ts:3</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -288,7 +288,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/loader.ts#L24">loader.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/loader.ts#L24">loader.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -311,7 +311,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/storage.ts#L29">storage.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/storage.ts#L29">storage.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -334,7 +334,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/loader.ts#L59">loader.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/loader.ts#L59">loader.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -366,7 +366,7 @@
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/loader.ts#L68">loader.ts:68</a></li>
+													<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/loader.ts#L68">loader.ts:68</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -419,7 +419,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/storage.ts#L6">storage.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/storage.ts#L6">storage.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -442,7 +442,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/helpers.ts#L10">helpers.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/helpers.ts#L10">helpers.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -471,7 +471,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/polishers.ts#L14">polishers.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/polishers.ts#L18">polishers.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -494,7 +494,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/helpers.ts#L12">helpers.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/helpers.ts#L12">helpers.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -517,7 +517,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/storage.ts#L10">storage.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/storage.ts#L10">storage.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -540,7 +540,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/polishers.ts#L16">polishers.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/polishers.ts#L20">polishers.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -581,7 +581,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/helpers.ts#L9">helpers.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/helpers.ts#L9">helpers.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -604,7 +604,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/storage.ts#L7">storage.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/storage.ts#L7">storage.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -632,7 +632,7 @@
 					<div class="tsd-signature tsd-kind-icon">JSONC<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/helpers.ts#L14">helpers.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/helpers.ts#L14">helpers.ts:14</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
@@ -645,7 +645,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/helpers.ts#L15">helpers.ts:15</a></li>
+										<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/helpers.ts#L15">helpers.ts:15</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -665,7 +665,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Opts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/loader.ts#L10">loader.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/loader.ts#L10">loader.ts:10</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -674,7 +674,7 @@
 						<div class="tsd-signature tsd-kind-icon">default<wbr>Config<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;.env&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/loader.ts#L11">loader.ts:11</a></li>
+								<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/loader.ts#L11">loader.ts:11</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -684,7 +684,7 @@
 						<div class="tsd-signature tsd-kind-icon">env<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"default"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;default&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/loader.ts#L13">loader.ts:13</a></li>
+								<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/loader.ts#L13">loader.ts:13</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -694,7 +694,7 @@
 						<div class="tsd-signature tsd-kind-icon">user<wbr>Config<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;process.env.CFG_JSON_PATH</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/eb3104e/src/lib/loader.ts#L12">loader.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/AckeeCZ/configuru/blob/a5a7df6/src/lib/loader.ts#L12">loader.ts:12</a></li>
 							</ul>
 						</aside>
 					</section>
