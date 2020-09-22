@@ -102,7 +102,7 @@
 }</code></pre>
 					</li>
 					<li><em>(optional)</em> Create custom (e.g. <code>~/.env/my-project.jsonc</code>) and save the path in your <code>CFG_JSON_PATH</code>. Use it to override your defaults<pre><code class="language-json">{
- <span class="hljs-attr">"SERVER_PORT"</span>: <span class="hljs-number">3001</span>,
+ <span class="hljs-attr">&quot;SERVER_PORT&quot;</span>: <span class="hljs-number">3001</span>,
 }</code></pre>
 					🦉 If you want to, you can omit the <code>SERVER_PORT</code> in your configuration (to leave the single value to default <code>3000</code>), or not set your custom configuration at all.</li>
 				</ol>
@@ -110,7 +110,7 @@
 					<h3>Use</h3>
 				</a>
 				<p><code>config.ts</code></p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader, values } <span class="hljs-keyword">from</span> <span class="hljs-string">'configuru'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader, values } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;configuru&#x27;</span>;
 
 <span class="hljs-comment">// create loader that cascades overrides and creates a config storage</span>
 <span class="hljs-keyword">const</span> loader = createLoader();
@@ -120,11 +120,11 @@
     server: {
         <span class="hljs-comment">// use loader accessors, place them in custom structure</span>
         <span class="hljs-comment">// loader parses correct type from store</span>
-        port: loader.number(<span class="hljs-string">'SERVER_PORT'</span>),
+        port: loader.number(<span class="hljs-string">&#x27;SERVER_PORT&#x27;</span>),
     },
 });</code></pre>
 				<p><code>foo.ts</code></p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> config <span class="hljs-keyword">from</span> <span class="hljs-string">'./config'</span>; <span class="hljs-comment">// e.g. { server: { port: 3000 } }</span>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> config <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./config&#x27;</span>; <span class="hljs-comment">// e.g. { server: { port: 3000 } }</span>
 
 <span class="hljs-built_in">console</span>.log(config.server.port); <span class="hljs-comment">// 3000</span></code></pre>
 				<a href="#config-storage-precedence" id="config-storage-precedence" style="color: inherit; text-decoration: none;">
@@ -141,42 +141,42 @@
 				</a>
 				<p>Sometimes it makes sense to have a static parameter in configuration. For example, when connecting to third party service, you want to have api key configurable per environment, but connection options not. You can insert in your configuration schema constant values of any type without loader and use Configuru for application parameters as well.</p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> configSchema = {
-    configurable: loader.string(<span class="hljs-string">'KEY'</span>),
-    <span class="hljs-keyword">static</span>: <span class="hljs-string">'foo'</span>,
+    configurable: loader.string(<span class="hljs-string">&#x27;KEY&#x27;</span>),
+    <span class="hljs-keyword">static</span>: <span class="hljs-string">&#x27;foo&#x27;</span>,
 };
-<span class="hljs-comment">// { configurable: &lt;loaded value&gt;, static: 'foo' }</span>
+<span class="hljs-comment">// { configurable: &lt;loaded value&gt;, static: &#x27;foo&#x27; }</span>
 <span class="hljs-keyword">const</span> { configurable, <span class="hljs-keyword">static</span> } = values(configSchema);</code></pre>
 				<a href="#hidden-variables-secrets-and-logging" id="hidden-variables-secrets-and-logging" style="color: inherit; text-decoration: none;">
 					<h3>Hidden variables, secrets and logging</h3>
 				</a>
 				<p><code>config.ts</code></p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader, values, safeValues } <span class="hljs-keyword">from</span> <span class="hljs-string">'configuru'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader, values, safeValues } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;configuru&#x27;</span>;
 <span class="hljs-keyword">const</span> loader = createLoader();
 
 <span class="hljs-comment">// create `buildConfig` function, we will use two loaders</span>
 <span class="hljs-keyword">const</span> configSchema = {
     <span class="hljs-comment">// add hidden flag</span>
-    apiKey: loader.string.hidden(<span class="hljs-string">'SECRET_KEY'</span>),
+    apiKey: loader.string.hidden(<span class="hljs-string">&#x27;SECRET_KEY&#x27;</span>),
 };
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> values(configSchema);
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> safeConfig = safeValues(configSchema);</code></pre>
 				<p><code>foo.ts</code></p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> config, { safeConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">'./config'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> config, { safeConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./config&#x27;</span>;
 
 <span class="hljs-comment">// use in your app, never log</span>
 config.apiKey; <span class="hljs-comment">// szvor4VYgS79z3QSBtmN0dJeyXbg1Xip</span>
 
-<span class="hljs-comment">// don't use, is truncated (or hidden for shorter vars) but okay-ish to log</span>
+<span class="hljs-comment">// don&#x27;t use, is truncated (or hidden for shorter vars) but okay-ish to log</span>
 safeConfig.apiKey; <span class="hljs-comment">// szvor***g1Xip</span></code></pre>
 				<a href="#options" id="options" style="color: inherit; text-decoration: none;">
 					<h3>Options</h3>
 				</a>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader } <span class="hljs-keyword">from</span> <span class="hljs-string">'configuru'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;configuru&#x27;</span>;
 <span class="hljs-keyword">const</span> loader = createLoader({
-    defaultConfigPath: <span class="hljs-string">'default-config'</span>; <span class="hljs-comment">// defaults to ".env"</span>
+    defaultConfigPath: <span class="hljs-string">&#x27;default-config&#x27;</span>; <span class="hljs-comment">// defaults to &quot;.env&quot;</span>
     userConfigPath: process.env.USER_CONFIG; <span class="hljs-comment">// defaults to process.env.CFG_JSON_PATH</span>
-    envMode?: <span class="hljs-string">'all'</span>; <span class="hljs-comment">// defaults to "default"</span>
+    envMode?: <span class="hljs-string">&#x27;all&#x27;</span>; <span class="hljs-comment">// defaults to &quot;default&quot;</span>
 });</code></pre>
 				<ol>
 					<li><code>defaultConfigPath</code>: Where to look for your default config JSON file (provide null to skip)</li>
@@ -196,19 +196,19 @@ safeConfig.apiKey; <span class="hljs-comment">// szvor***g1Xip</span></code></pr
 				<p>Configuru is type safe, but you can run into problems, having an enum value parsed as a string.
 				Since there is no enum loader, thus no validation, the value can be anything.</p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> loader = createLoader();
-<span class="hljs-keyword">type</span> Level = <span class="hljs-string">'info'</span>|<span class="hljs-string">'warn'</span>|<span class="hljs-string">'unknown'</span>;
+<span class="hljs-keyword">type</span> Level = <span class="hljs-string">&#x27;info&#x27;</span>|<span class="hljs-string">&#x27;warn&#x27;</span>|<span class="hljs-string">&#x27;unknown&#x27;</span>;
 <span class="hljs-keyword">const</span> createLogger = <span class="hljs-function">(<span class="hljs-params">opts: { defaultLevel: Level }</span>) =&gt;</span> { <span class="hljs-comment">/*...*/</span> }
 
 <span class="hljs-keyword">const</span> config1 = values({
-    defaultLevel: loader.string(<span class="hljs-string">'LOGGER_DEFAULT_LEVEL'</span>),
+    defaultLevel: loader.string(<span class="hljs-string">&#x27;LOGGER_DEFAULT_LEVEL&#x27;</span>),
 }); <span class="hljs-comment">// type -&gt; { defaultLevel: string }</span>
 
 createLogger(config1); <span class="hljs-comment">// error: string not assignable to Level</span></code></pre>
 				<p>To solve it, you can create a custom loader</p>
 				<pre><code class="language-typescript"><span class="hljs-comment">// create custom loader</span>
 <span class="hljs-keyword">const</span> levelLoader = loader.custom(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> {
-    <span class="hljs-keyword">let</span> level: Level = <span class="hljs-string">'unknown'</span>;
-    <span class="hljs-keyword">if</span> (x === <span class="hljs-string">'info'</span> || x === <span class="hljs-string">'warn'</span>) {
+    <span class="hljs-keyword">let</span> level: Level = <span class="hljs-string">&#x27;unknown&#x27;</span>;
+    <span class="hljs-keyword">if</span> (x === <span class="hljs-string">&#x27;info&#x27;</span> || x === <span class="hljs-string">&#x27;warn&#x27;</span>) {
         level = x;
     }
     <span class="hljs-keyword">return</span> level;
@@ -217,7 +217,7 @@ createLogger(config1); <span class="hljs-comment">// error: string not assignabl
 <span class="hljs-keyword">const</span> optimisticLevelLoader = loader.custom(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x <span class="hljs-keyword">as</span> Level);
 
 <span class="hljs-keyword">const</span> config2 = values({
-    defaultLevel: levelLoader(<span class="hljs-string">'LOGGER_DEFAULT_LEVEL'</span>),
+    defaultLevel: levelLoader(<span class="hljs-string">&#x27;LOGGER_DEFAULT_LEVEL&#x27;</span>),
 }); <span class="hljs-comment">// type -&gt; { defaultLevel: Level }</span>
 
 createLogger(config2); <span class="hljs-comment">// OK</span></code></pre>
@@ -225,14 +225,14 @@ createLogger(config2); <span class="hljs-comment">// OK</span></code></pre>
 					<h3>Custom loaders</h3>
 				</a>
 				<p>Default loaders not enough? You can use custom loaders to create any transformation you want and types will be inferred from the return type of you function.</p>
-				<pre><code class="language-typescript"><span class="hljs-comment">// 'PHOTO-2019-04-01' =&gt; { type: 'PHOTO', date: Date }</span>
+				<pre><code class="language-typescript"><span class="hljs-comment">// &#x27;PHOTO-2019-04-01&#x27; =&gt; { type: &#x27;PHOTO&#x27;, date: Date }</span>
 <span class="hljs-keyword">const</span> stampLoader = loader.custom(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> {
-    <span class="hljs-keyword">const</span> [<span class="hljs-keyword">type</span>, y, m, d] = x.split(<span class="hljs-string">'-'</span>);
+    <span class="hljs-keyword">const</span> [<span class="hljs-keyword">type</span>, y, m, d] = x.split(<span class="hljs-string">&#x27;-&#x27;</span>);
     <span class="hljs-keyword">return</span> { <span class="hljs-keyword">type</span>, date: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(y, m, d) };
 })
 
 <span class="hljs-keyword">const</span> config = values({
-    stamp: stampLoader(<span class="hljs-string">'STAMP'</span>),
+    stamp: stampLoader(<span class="hljs-string">&#x27;STAMP&#x27;</span>),
 }); <span class="hljs-comment">// type -&gt; { stamp: { type: any, date: Date } };</span></code></pre>
 				<a href="#best-practices" id="best-practices" style="color: inherit; text-decoration: none;">
 					<h2>Best practices</h2>
@@ -337,6 +337,9 @@ createLogger(config2); <span class="hljs-comment">// OK</span></code></pre>
 						<a href="globals.html#createloader" class="tsd-kind-icon">create<wbr>Loader</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#fileexistssync" class="tsd-kind-icon">file<wbr>Exists<wbr>Sync</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#frompairs" class="tsd-kind-icon">from<wbr>Pairs</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -386,6 +389,5 @@ createLogger(config2); <span class="hljs-comment">// OK</span></code></pre>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
