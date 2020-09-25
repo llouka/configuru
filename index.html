@@ -234,6 +234,34 @@ createLogger(config2); <span class="hljs-comment">// OK</span></code></pre>
 <span class="hljs-keyword">const</span> config = values({
     stamp: stampLoader(<span class="hljs-string">&#x27;STAMP&#x27;</span>),
 }); <span class="hljs-comment">// type -&gt; { stamp: { type: any, date: Date } };</span></code></pre>
+				<p>Custom loaders can also return an object that contains nested loaders. Meaning you can have a custom loader that
+				loads a value from storage and based on that value returns another objects (or an array of objects) that themselves may contain loaders.</p>
+				<p>This can be particularly useful for arrays of connection strings that may contain sensitive information like passwords. This will give you type-safe array of objects, while still supporting hidden loaders.</p>
+				<pre><code class="language-typescript"><span class="hljs-comment">// env.json</span>
+<span class="hljs-comment">// {</span>
+<span class="hljs-comment">//   &quot;PASSWORD&quot;: &quot;pwd&quot;,</span>
+<span class="hljs-comment">//   &quot;HOSTS&quot;: &quot;host1,host2&quot;</span>
+<span class="hljs-comment">// }</span>
+<span class="hljs-keyword">const</span> schema = {
+  connections: loader.custom(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> x.split(<span class="hljs-string">&#x27;,&#x27;</span>).map(<span class="hljs-function"><span class="hljs-params">host</span> =&gt;</span> ({
+      host,
+      password: loader.string.hidden(<span class="hljs-string">&#x27;PASSWORD&#x27;</span>),      
+    }))
+  })(<span class="hljs-string">&#x27;HOSTS&#x27;</span>)
+}
+
+<span class="hljs-built_in">console</span>.log(safeValues(schema));
+<span class="hljs-comment">// [</span>
+<span class="hljs-comment">//     {</span>
+<span class="hljs-comment">//         &quot;host&quot;: &quot;host1&quot;,</span>
+<span class="hljs-comment">//         &quot;foo&quot;: &quot;[redacted]&quot;</span>
+<span class="hljs-comment">//     },</span>
+<span class="hljs-comment">//     {</span>
+<span class="hljs-comment">//         &quot;host&quot;: &quot;host2&quot;,</span>
+<span class="hljs-comment">//         &quot;foo&quot;: &quot;[redacted]&quot;</span>
+<span class="hljs-comment">//     }</span>
+<span class="hljs-comment">// ]</span></code></pre>
 				<a href="#best-practices" id="best-practices" style="color: inherit; text-decoration: none;">
 					<h2>Best practices</h2>
 				</a>
