@@ -65,12 +65,12 @@
 				<div align="center">
 					<img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/google/146/female-mechanic_1f469-200d-1f527.png" width=70 />
 					<h1>Configuru<img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/google/146/gear_2699.png" width=30 /></h1>
-					<p><a href="https://travis-ci.com/AckeeCZ/configuru"><img src="https://img.shields.io/travis/com/AckeeCZ/configuru/master.svg?style=flat-square" alt="Build Status"></a>
-						<a href="https://www.npmjs.com/package/configuru"><img src="https://img.shields.io/npm/v/configuru.svg?style=flat-square" alt="Npm"></a>
-						<a href="https://codecov.io/gh/AckeeCZ/configuru"><img src="https://img.shields.io/codecov/c/github/AckeeCZ/configuru?style=flat-square" alt="Coverage"></a>
-						<a href="https://snyk.io/test/github/AckeeCZ/configuru?targetFile=package.json"><img src="https://img.shields.io/snyk/vulnerabilities/github/AckeeCZ/configuru.svg?style=flat-square" alt="Vulnerabilities"></a>
-						<a href="https://david-dm.org/AckeeCZ/configuru"><img src="https://img.shields.io/david/AckeeCZ/configuru.svg?style=flat-square" alt="Dependency Status"></a>
-					<a href="https://david-dm.org/AckeeCZ/configuru?type=dev"><img src="https://img.shields.io/david/dev/AckeeCZ/configuru.svg?style=flat-square" alt="Dev Dependency Status"></a></p>
+					<p><a href="https://travis-ci.com/AckeeCZ/configuru"><img src="https://flat.badgen.net/travis/AckeeCZ/configuru" alt="Build Status"></a>
+						<a href="https://www.npmjs.com/package/configuru"><img src="https://flat.badgen.net/npm/v/configuru" alt="Npm"></a>
+						<a href="https://codecov.io/gh/AckeeCZ/configuru"><img src="https://flat.badgen.net/codecov/c/github/AckeeCZ/configuru" alt="Coverage"></a>
+						<a href="https://snyk.io/test/github/AckeeCZ/configuru?targetFile=package.json"><img src="https://flat.badgen.net/snyk/AckeeCZ/configuru" alt="Vulnerabilities"></a>
+						<a href="https://david-dm.org/AckeeCZ/configuru"><img src="https://flat.badgen.net/david/dep/AckeeCZ/configuru" alt="Dependency Status"></a>
+					<a href="https://david-dm.org/AckeeCZ/configuru?type=dev"><img src="https://flat.badgen.net/david/dep/AckeeCZ/configuru" alt="Dev Dependency Status"></a></p>
 					<p>Manage the configuration of your Nodejs application with multiple environments and custom preferences, utilizing Configuru in CI and development as well!</p>
 				</div>
 				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
@@ -88,220 +88,47 @@
 				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
 					<h2>Getting started</h2>
 				</a>
-				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
-					<h3>Install</h3>
-				</a>
-				<pre><code class="language-bash">npm install configuru</code></pre>
-				<a href="#setup" id="setup" style="color: inherit; text-decoration: none;">
-					<h3>Setup</h3>
-				</a>
 				<ol>
-					<li>Create <code>.env.jsonc</code> in root of your project, add defaults or placeholders. It can look like this:<pre><code class="language-jsonc">{
+					<li><p>Install</p>
+						<pre><code class="language-bash">npm install configuru</code></pre>
+					</li>
+					<li><p>Create <code>.env.jsonc</code> in root of your project, add defaults or placeholders.</p>
+						<pre><code class="language-jsonc">{
  // HTTP server
  &quot;SERVER_PORT&quot;: 3000, // port the server will be listening on
 }</code></pre>
 					</li>
-					<li><em>(optional)</em> Create custom (e.g. <code>~/.env/my-project.jsonc</code>) and save the path in your <code>CFG_JSON_PATH</code>. Use it to override your defaults<pre><code class="language-json">{
- <span class="hljs-attr">&quot;SERVER_PORT&quot;</span>: <span class="hljs-number">3001</span>,
-}</code></pre>
-					🦉 If you want to, you can omit the <code>SERVER_PORT</code> in your configuration (to leave the single value to default <code>3000</code>), or not set your custom configuration at all.</li>
-				</ol>
-				<a href="#use" id="use" style="color: inherit; text-decoration: none;">
-					<h3>Use</h3>
-				</a>
-				<p><code>config.ts</code></p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader, values } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;configuru&#x27;</span>;
-
-<span class="hljs-comment">// create loader that cascades overrides and creates a config storage</span>
-<span class="hljs-keyword">const</span> loader = createLoader();
-
-<span class="hljs-comment">// Pass configuration schema to `values` transformer to get configuration</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> values({
-    server: {
-        <span class="hljs-comment">// use loader accessors, place them in custom structure</span>
-        <span class="hljs-comment">// loader parses correct type from store</span>
-        port: loader.number(<span class="hljs-string">&#x27;SERVER_PORT&#x27;</span>),
-    },
-});</code></pre>
-				<p><code>foo.ts</code></p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> config <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./config&#x27;</span>; <span class="hljs-comment">// e.g. { server: { port: 3000 } }</span>
-
-<span class="hljs-built_in">console</span>.log(config.server.port); <span class="hljs-comment">// 3000</span></code></pre>
-				<a href="#config-storage-precedence" id="config-storage-precedence" style="color: inherit; text-decoration: none;">
-					<h2>Config storage precedence</h2>
-				</a>
-				<p>Configuration is merged from three sources with override priorities as described in the following diagram.</p>
-				<p><img src="https://www.plantuml.com/plantuml/svg/0/VP4zJyD038Rt-nLM9XWITiHGAGnyI7HWOZpkdFPeOXy-En8IFvvBcw7jmFhQVfvNygQe5xLfTEMGA7ln4qnC7FR24uAAeND36X6QY8EtKI4m3MdNW2yGrv4LbFFSNF0I8Gi7BAL3cfSqEqUi299sUmKUwldZohofDJI5MtXvtxwjfCwz8cP8j72-C2Wiij8vf0WBw1fdhhUYFC6npXrKRHAc2KalkJsJ-aG52WP1BS1IWTIUIbHZDlt7azq7crpWPo_9VnxRFNcAFp1KvBUbS02UKIH5N2JzyparmiDlsuBTGmEmNTTAu-oKv-jyKq_hf_u0" alt="x" title="x"></p>
-				<p>:warning: All storage sources are regarded as flat structures. Nested objects are not merged.</p>
-				<a href="#advanced-usage" id="advanced-usage" style="color: inherit; text-decoration: none;">
-					<h2>Advanced usage</h2>
-				</a>
-				<a href="#constant-parameters" id="constant-parameters" style="color: inherit; text-decoration: none;">
-					<h3>Constant parameters</h3>
-				</a>
-				<p>Sometimes it makes sense to have a static parameter in configuration. For example, when connecting to third party service, you want to have api key configurable per environment, but connection options not. You can insert in your configuration schema constant values of any type without loader and use Configuru for application parameters as well.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> configSchema = {
-    configurable: loader.string(<span class="hljs-string">&#x27;KEY&#x27;</span>),
-    <span class="hljs-keyword">static</span>: <span class="hljs-string">&#x27;foo&#x27;</span>,
-};
-<span class="hljs-comment">// { configurable: &lt;loaded value&gt;, static: &#x27;foo&#x27; }</span>
-<span class="hljs-keyword">const</span> { configurable, <span class="hljs-keyword">static</span> } = values(configSchema);</code></pre>
-				<a href="#hidden-variables-secrets-and-logging" id="hidden-variables-secrets-and-logging" style="color: inherit; text-decoration: none;">
-					<h3>Hidden variables, secrets and logging</h3>
-				</a>
-				<p><code>config.ts</code></p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader, values, safeValues } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;configuru&#x27;</span>;
-<span class="hljs-keyword">const</span> loader = createLoader();
-
-<span class="hljs-comment">// create `buildConfig` function, we will use two loaders</span>
-<span class="hljs-keyword">const</span> configSchema = {
-    <span class="hljs-comment">// add hidden flag</span>
-    apiKey: loader.string.hidden(<span class="hljs-string">&#x27;SECRET_KEY&#x27;</span>),
-};
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> values(configSchema);
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> safeConfig = safeValues(configSchema);</code></pre>
-				<p><code>foo.ts</code></p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> config, { safeConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./config&#x27;</span>;
-
-<span class="hljs-comment">// use in your app, never log</span>
-config.apiKey; <span class="hljs-comment">// szvor4VYgS79z3QSBtmN0dJeyXbg1Xip</span>
-
-<span class="hljs-comment">// don&#x27;t use, is truncated (or hidden for shorter vars) but okay-ish to log</span>
-safeConfig.apiKey; <span class="hljs-comment">// szvor***g1Xip</span></code></pre>
-				<a href="#options" id="options" style="color: inherit; text-decoration: none;">
-					<h3>Options</h3>
-				</a>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;configuru&#x27;</span>;
-<span class="hljs-keyword">const</span> loader = createLoader({
-    defaultConfigPath: <span class="hljs-string">&#x27;default-config&#x27;</span>; <span class="hljs-comment">// defaults to &quot;.env&quot;</span>
-    userConfigPath: process.env.USER_CONFIG; <span class="hljs-comment">// defaults to process.env.CFG_JSON_PATH</span>
-    envMode?: <span class="hljs-string">&#x27;all&#x27;</span>; <span class="hljs-comment">// defaults to &quot;default&quot;</span>
-});</code></pre>
-				<ol>
-					<li><code>defaultConfigPath</code>: Where to look for your default config JSON file (provide null to skip)</li>
-					<li><code>userConfigPath</code>: Where to look for your user config JSON file (provide null to skip)</li>
-					<li><code>envMode</code>: How to handle process.env variables<ol>
-							<li><code>all</code> - Load (override) all vars available in process.env to the store</li>
-							<li><code>default</code> - Load (override) only vars with keys from default config</li>
-							<li><code>merged</code> - Load (override) only vars with keys from either (user or default) config</li>
-							<li><code>none</code> - Don&#39;t use env variables</li>
-						</ol>
+					<li><p><em>(optional)</em> As a developer (or environment), create a custom override file (e.g. <code>~/.env/my-project.jsonc</code>) and save the path in your <code>CFG_JSON_PATH</code>.</p>
+					</li>
+					<li><p>Create a configuration module (e.g. <code>config.ts</code>)</p>
+						<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader, values } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;configuru&#x27;</span>;
+</code></pre>
 					</li>
 				</ol>
-				<p>🦉 When configuring configuru, you can always use paths with or without extension, it will try to find any of the supported formats via replacing/adding valid extensions.</p>
-				<a href="#mismatch-types" id="mismatch-types" style="color: inherit; text-decoration: none;">
-					<h3>Mismatch types</h3>
-				</a>
-				<p>Configuru is type safe, but you can run into problems, having an enum value parsed as a string.
-				Since there is no enum loader, thus no validation, the value can be anything.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> loader = createLoader();
-<span class="hljs-keyword">type</span> Level = <span class="hljs-string">&#x27;info&#x27;</span>|<span class="hljs-string">&#x27;warn&#x27;</span>|<span class="hljs-string">&#x27;unknown&#x27;</span>;
-<span class="hljs-keyword">const</span> createLogger = <span class="hljs-function">(<span class="hljs-params">opts: { defaultLevel: Level }</span>) =&gt;</span> { <span class="hljs-comment">/*...*/</span> }
+				<p>// create loader that cascades overrides and creates a config storage
+				const loader = createLoader();</p>
+				<p>// Pass configuration schema to <code>values</code> transformer to get configuration
+					export default values({
+					server: {
+					// use loader accessors, place them in custom structure
+					// loader parses correct type from store
+					port: loader.number(&#39;SERVER_PORT&#39;),
+					},
+				});</p>
+				<pre><code>
+<span class="hljs-number">5.</span> Use your <span class="hljs-keyword">configuration</span> params throughout your app
+```typescript
+<span class="hljs-keyword">import</span> config <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./config&#x27;</span>; // e.g. { <span class="hljs-keyword">server</span>: { port: <span class="hljs-number">3000</span> } }
 
-<span class="hljs-keyword">const</span> config1 = values({
-    defaultLevel: loader.string(<span class="hljs-string">&#x27;LOGGER_DEFAULT_LEVEL&#x27;</span>),
-}); <span class="hljs-comment">// type -&gt; { defaultLevel: string }</span>
-
-createLogger(config1); <span class="hljs-comment">// error: string not assignable to Level</span></code></pre>
-				<p>To solve it, you can create a custom loader</p>
-				<pre><code class="language-typescript"><span class="hljs-comment">// create custom loader</span>
-<span class="hljs-keyword">const</span> levelLoader = loader.custom(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> {
-    <span class="hljs-keyword">let</span> level: Level = <span class="hljs-string">&#x27;unknown&#x27;</span>;
-    <span class="hljs-keyword">if</span> (x === <span class="hljs-string">&#x27;info&#x27;</span> || x === <span class="hljs-string">&#x27;warn&#x27;</span>) {
-        level = x;
-    }
-    <span class="hljs-keyword">return</span> level;
-});
-<span class="hljs-comment">// or just</span>
-<span class="hljs-keyword">const</span> optimisticLevelLoader = loader.custom(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x <span class="hljs-keyword">as</span> Level);
-
-<span class="hljs-keyword">const</span> config2 = values({
-    defaultLevel: levelLoader(<span class="hljs-string">&#x27;LOGGER_DEFAULT_LEVEL&#x27;</span>),
-}); <span class="hljs-comment">// type -&gt; { defaultLevel: Level }</span>
-
-createLogger(config2); <span class="hljs-comment">// OK</span></code></pre>
-				<a href="#custom-loaders" id="custom-loaders" style="color: inherit; text-decoration: none;">
-					<h3>Custom loaders</h3>
-				</a>
-				<p>Default loaders not enough? You can use custom loaders to create any transformation you want and types will be inferred from the return type of you function.</p>
-				<pre><code class="language-typescript"><span class="hljs-comment">// &#x27;PHOTO-2019-04-01&#x27; =&gt; { type: &#x27;PHOTO&#x27;, date: Date }</span>
-<span class="hljs-keyword">const</span> stampLoader = loader.custom(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> {
-    <span class="hljs-keyword">const</span> [<span class="hljs-keyword">type</span>, y, m, d] = x.split(<span class="hljs-string">&#x27;-&#x27;</span>);
-    <span class="hljs-keyword">return</span> { <span class="hljs-keyword">type</span>, date: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(y, m, d) };
-})
-
-<span class="hljs-keyword">const</span> config = values({
-    stamp: stampLoader(<span class="hljs-string">&#x27;STAMP&#x27;</span>),
-}); <span class="hljs-comment">// type -&gt; { stamp: { type: any, date: Date } };</span></code></pre>
-				<p>Custom loaders can also return an object that contains nested loaders. Meaning you can have a custom loader that
-				loads a value from storage and based on that value returns another objects (or an array of objects) that themselves may contain loaders.</p>
-				<p>This can be particularly useful for arrays of connection strings that may contain sensitive information like passwords. This will give you type-safe array of objects, while still supporting hidden loaders.</p>
-				<pre><code class="language-typescript"><span class="hljs-comment">// env.json</span>
-<span class="hljs-comment">// {</span>
-<span class="hljs-comment">//   &quot;PASSWORD&quot;: &quot;pwd&quot;,</span>
-<span class="hljs-comment">//   &quot;HOSTS&quot;: &quot;host1,host2&quot;</span>
-<span class="hljs-comment">// }</span>
-<span class="hljs-keyword">const</span> schema = {
-  connections: loader.custom(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> {
-    <span class="hljs-keyword">return</span> x.split(<span class="hljs-string">&#x27;,&#x27;</span>).map(<span class="hljs-function"><span class="hljs-params">host</span> =&gt;</span> ({
-      host,
-      password: loader.string.hidden(<span class="hljs-string">&#x27;PASSWORD&#x27;</span>),      
-    }))
-  })(<span class="hljs-string">&#x27;HOSTS&#x27;</span>)
-}
-
-<span class="hljs-built_in">console</span>.log(safeValues(schema));
-<span class="hljs-comment">// [</span>
-<span class="hljs-comment">//     {</span>
-<span class="hljs-comment">//         &quot;host&quot;: &quot;host1&quot;,</span>
-<span class="hljs-comment">//         &quot;foo&quot;: &quot;[redacted]&quot;</span>
-<span class="hljs-comment">//     },</span>
-<span class="hljs-comment">//     {</span>
-<span class="hljs-comment">//         &quot;host&quot;: &quot;host2&quot;,</span>
-<span class="hljs-comment">//         &quot;foo&quot;: &quot;[redacted]&quot;</span>
-<span class="hljs-comment">//     }</span>
-<span class="hljs-comment">// ]</span></code></pre>
-				<a href="#best-practices" id="best-practices" style="color: inherit; text-decoration: none;">
-					<h2>Best practices</h2>
+console.log(config.<span class="hljs-keyword">server</span>.port); // <span class="hljs-number">3000</span></code></pre>
+				<a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
+					<h2>Docs</h2>
 				</a>
 				<ul>
-					<li>Always <strong>use flat structure</strong> in JSON files (create logical hierarchy in your app when building config with loader)</li>
-					<li>For config keys, <strong>use <code>CAPITALIZED_WITH_UNDERSCORES</code> case</strong>, as is conventional for env variables</li>
-					<li><strong>Keep all variables used by loader in you default config</strong>, add to VCS. Store default values or placeholders. It will be a perfect starting point for custom configs.</li>
-					<li>Keep your configuration interface <strong>minimal</strong>. If you don&#39;t need to configure parameter for different environments, use constant parameter without loader.</li>
-					<li>Even though you can use plain <code>JSON</code> for config values, <strong>prefer <code>JSONc</code></strong> and add comments to your variables.</li>
-					<li><strong>Keep your <code>.env.jsonc</code> well structured and well documented</strong>. Setting up the configuration should not require thorough prior knowledge of the implementation.</li>
+					<li><a href="./wiki/storage-precedence.md">Config storage precedence</a></li>
+					<li><a href="./wiki/advanced-usage.md">Advanced usage</a></li>
+					<li><a href="./wiki/best-practices.md">Best practices</a></li>
 				</ul>
-				<a href="#when-to-use-placeholder-when-default-value" id="when-to-use-placeholder-when-default-value" style="color: inherit; text-decoration: none;">
-					<h3>When to use placeholder, when default value?</h3>
-				</a>
-				<p><img src="http://www.plantuml.com/plantuml/svg/POwnJWCn38RtF8KbbkihqA5bP623xHRVdNCnEFOfSO2-FQ65WbGFaNxz__Sfn-fOl6K9zOrrmu8PigdDgLWcyDBeNxDGn2R-J9_-8Bng9dMO-qCbd4KXS8HXr2TyjS9-0elGAfKAipLPHkq1FjYJjGucr9LrFOow0q-aC9oexWBq-zOyLc3le4PUI9rH3ZSxaYuSr7hwkRjfckvVAlr-5jvH6kslVNNRBgWk7CEVu9B3bTy4Pqgs29LzE5FXs3SjonS0" alt=""></p>
-				<p>Examples:</p>
-				<ul>
-					<li>Setting default of <code>SQL_PORT</code> to <code>5432</code> is a good idea if you are using PostgreSQL. Similarly for MySQL, a reasonable default value would be <code>3306</code></li>
-					<li>Default <code>3000</code> for your HTTP server might be reasonable, if it is a convention of your developer team and/or its is wired e.g. in your Dockerfile anyway. Developers can still change it collides with any local running processes.</li>
-					<li>Using credentials to your testing infrastructure as a default is wrong, even though it would make setup for developers easier in some scenarios. It would be confidential info in your repo history.</li>
-				</ul>
-				<a href="#recommended-structure-for-envjsonc" id="recommended-structure-for-envjsonc" style="color: inherit; text-decoration: none;">
-					<h3>Recommended structure for <code>.env.jsonc</code></h3>
-				</a>
-				<pre><code class="language-jsonc">{
-    // Server
-    &quot;SERVER_PORT&quot;: 3000,
-
-    // Development
-    &quot;LOGGER_PRETTY&quot;: false, // colorful formatted logs
-    &quot;DEV_ERRORS&quot;: false, // if true, return error details, including stack trace (affects only response, full details are always logged)
-
-    // Logging
-    &quot;LOGGER_DEFAULT_LEVEL&quot;: &quot;debug&quot;, // silent, fatal, error, warn, info, debug, trace
-}</code></pre>
-				<ol>
-					<li>If you find your configuration file harder to navigate through, use sections seperated by a newline with a comment</li>
-					<li>If name is not self-explanatory, use brief comment to explain how is the value interpreted</li>
-					<li>Do not include tautological comments (<code>&quot;SERVER_PORT&quot;: 3000, // server port</code>)</li>
-				</ol>
 				<a href="#see-also" id="see-also" style="color: inherit; text-decoration: none;">
 					<h2>See also</h2>
 				</a>
@@ -312,6 +139,7 @@ createLogger(config2); <span class="hljs-comment">// OK</span></code></pre>
 					<li><a href="https://www.npmjs.com/package/configstore"><code>configstore</code></a> - KV storage for configuration</li>
 					<li><a href="https://www.npmjs.com/package/figgy-pudding"><code>figgy-pudding</code></a> - Config object builder / storage</li>
 				</ul>
+				<p>Know other popular projects that solve the same issue? Open a PR to help people find what they need!</p>
 				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 					<h2>License</h2>
 				</a>
