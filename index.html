@@ -89,38 +89,41 @@
 					<h2>Getting started</h2>
 				</a>
 				<ol>
-					<li><p>Install</p>
-						<pre><code class="language-bash">npm install configuru</code></pre>
-					</li>
-					<li><p>Create <code>.env.jsonc</code> in root of your project, add defaults or placeholders.</p>
-						<pre><code class="language-jsonc">{
- // HTTP server
- &quot;SERVER_PORT&quot;: 3000, // port the server will be listening on
+					<li>Install</li>
+				</ol>
+				<pre><code class="language-bash">npm install configuru</code></pre>
+				<ol start="2">
+					<li>Create <code>.env.jsonc</code> in root of your project, add defaults or placeholders.</li>
+				</ol>
+				<pre><code class="language-jsonc">{
+  // HTTP server
+  &quot;SERVER_PORT&quot;: 3000 // port the server will be listening on
 }</code></pre>
-					</li>
+				<ol start="3">
 					<li><p><em>(optional)</em> As a developer (or environment), create a custom override file (e.g. <code>~/.env/my-project.jsonc</code>) and save the path in your <code>CFG_JSON_PATH</code>.</p>
 					</li>
 					<li><p>Create a configuration module (e.g. <code>config.ts</code>)</p>
-						<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader, values } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;configuru&#x27;</span>;
-</code></pre>
 					</li>
 				</ol>
-				<p>// create loader that cascades overrides and creates a config storage
-				const loader = createLoader();</p>
-				<p>// Pass configuration schema to <code>values</code> transformer to get configuration
-					export default values({
-					server: {
-					// use loader accessors, place them in custom structure
-					// loader parses correct type from store
-					port: loader.number(&#39;SERVER_PORT&#39;),
-					},
-				});</p>
-				<pre><code>
-<span class="hljs-number">5.</span> Use your <span class="hljs-keyword">configuration</span> params throughout your app
-```typescript
-<span class="hljs-keyword">import</span> config <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./config&#x27;</span>; // e.g. { <span class="hljs-keyword">server</span>: { port: <span class="hljs-number">3000</span> } }
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { createLoader, values } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;configuru&#x27;</span>
 
-console.log(config.<span class="hljs-keyword">server</span>.port); // <span class="hljs-number">3000</span></code></pre>
+<span class="hljs-comment">// create loader that cascades overrides and creates a config storage</span>
+<span class="hljs-keyword">const</span> loader = createLoader()
+
+<span class="hljs-comment">// Pass configuration schema to `values` transformer to get configuration</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> values({
+  server: {
+    <span class="hljs-comment">// use loader accessors, place them in custom structure</span>
+    <span class="hljs-comment">// loader parses correct type from store</span>
+    port: loader.number(<span class="hljs-string">&#x27;SERVER_PORT&#x27;</span>),
+  },
+})</code></pre>
+				<ol start="5">
+					<li>Use your configuration params throughout your app</li>
+				</ol>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> config <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./config&#x27;</span> <span class="hljs-comment">// e.g. { server: { port: 3000 } }</span>
+
+<span class="hljs-built_in">console</span>.log(config.server.port) <span class="hljs-comment">// 3000</span></code></pre>
 				<a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
 					<h2>Docs</h2>
 				</a>
